@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title>Sorted products</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list" fxLayout="row">
+            <mat-list-item role="listitem" *ngFor="let item of directions$ | async" style='text-decoration: underline; cursor: pointer;'
+                [routerLink]=[] [queryParams]="{sort:item}">
+                {{item}}
+            </mat-list-item>
+        </mat-list>
+        <mat-list role="list">
+            <mat-chip-list aria-label="Fish selection">
+                <mat-chip *ngFor="let item of productList$ | async">
+                    {{item.title}}
+                </mat-chip>
+            </mat-chip-list>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

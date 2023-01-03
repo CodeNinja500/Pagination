@@ -1,0 +1,36 @@
+<mat-card>
+    <mat-card-title>
+        Job Search
+    </mat-card-title>
+    <form [formGroup]="searchForm" (ngSubmit)="onSearchFormSubmitted(searchForm)">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Key Word</mat-label>
+                <input matInput type="text" placeholder="Key Word" formControlName="keyWord" required>
+                <mat-error *ngIf="searchForm.get('keyWord')!.invalid">keyWord is
+                    invalid</mat-error>
+            </mat-form-field>
+        </div>
+        <div><button type="submit" mat-raised-button color="primary">Submit</button></div>
+    </form>
+    <mat-card-content>
+        <br>
+        <ng-container *ngIf="jobsFiltered$ | async as list">
+            <table mat-table [dataSource]="list" class="mat-elevation-z8">
+                <!-- Column 1 -->
+                <ng-container matColumnDef="Title">
+                    <th mat-header-cell *matHeaderCellDef> Title </th>
+                    <td mat-cell *matCellDef="let element"> {{ element.title }} </td>
+                </ng-container>
+                <!-- Column 2 -->
+                <ng-container matColumnDef="Description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['Title', 'Description']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['Title', 'Description'];"></tr>
+            </table>
+        </ng-container>
+    </mat-card-content>
+</mat-card>
