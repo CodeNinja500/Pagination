@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { BrandModel } from '../../models/brand.model';
 import { ComfortFeatureModel } from '../../models/comfort-feature.model';
 import { CarModel } from '../../models/car.model';
@@ -17,5 +18,21 @@ export class RouteFilterMultiCarsComponent {
   readonly comfortFeatureList$: Observable<ComfortFeatureModel[]> = this._carsService.getAllComfortFeatures();
   readonly carList$: Observable<CarModel[]> = this._carsService.getAllCars();
 
-  constructor(private _carsService: CarsService) {}
+  readonly queryParamsFilter$: Observable<{
+    brands: string[];
+    comfortFeatures: string[];
+  }> = this._activatedRoute.queryParams.pipe(
+    map((queryParams) => {
+      let brandParams: string[] = queryParams['brands'].split(',');
+      let comfortFeatureParams: string[] = queryParams['comfort-features'].split(',');
+      return {
+        brands: brandParams,
+        comfortFeatures: comfortFeatureParams
+      };
+    })
+  );
+
+  constructor(private _carsService: CarsService, private _activatedRoute: ActivatedRoute) {}
+
+  onCarBrandSelected(event: boolean, brand: string): void {}
 }
