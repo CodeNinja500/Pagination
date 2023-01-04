@@ -23,8 +23,15 @@ export class RouteFilterMultiCarsComponent {
     comfortFeatures: string[];
   }> = this._activatedRoute.queryParams.pipe(
     map((queryParams) => {
-      let brandParams: string[] = queryParams['brands'].split(',');
-      let comfortFeatureParams: string[] = queryParams['comfort-features'].split(',');
+      let brandParams: string[] = [];
+      let comfortFeatureParams: string[] = [];
+      if (queryParams['brands']) {
+        brandParams = queryParams['brands'].split(',');
+      }
+      if (queryParams['comfort-features']) {
+        comfortFeatureParams = queryParams['comfort-features'].split(',');
+      }
+
       return {
         brands: brandParams,
         comfortFeatures: comfortFeatureParams
