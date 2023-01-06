@@ -1,0 +1,18 @@
+<mat-card *ngIf="queryParams$|async as params">
+    <mat-card-title>Limit</mat-card-title>
+    <mat-button-toggle-group [formControl]="limitForm" (change)="onLimitSelected(limitForm.value)">
+        <mat-button-toggle *ngFor="let item of limits$ | async" [value]="item" [checked]="item==params">{{item}}
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <br>
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let item of limits$ | async" [disabled]="item==params" (click)='onLimitSelected(item)'>
+            {{item}}
+        </button>
+    </mat-menu>
+    <mat-card-content>
+        <mat-list role="list"><mat-list-item role="listitem"
+                *ngFor="let item of productList$ | async">{{item.title}}</mat-list-item></mat-list>
+    </mat-card-content>
+</mat-card>

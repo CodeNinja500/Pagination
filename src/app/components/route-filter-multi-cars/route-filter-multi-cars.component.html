@@ -1,12 +1,14 @@
-<mat-card>
+<mat-card *ngIf="queryParamsFilter$|async as params">
     <mat-card-title>Filtered Cars</mat-card-title>
     <h1>Brands</h1>
     <mat-selection-list role="list" style='display: flex;'>
         <mat-list-option role="listitem" *ngFor="let item of carBrandList$ | async" [value]="item.id"
-            (selectedChange)="onCarBrandSelected($event,item.name)">{{item.name}}</mat-list-option></mat-selection-list>
+            (selectedChange)="onCarBrandChanged($event,item)"
+            [selected]="params.brands.has(item.id)">{{item.name}}</mat-list-option></mat-selection-list>
     <h1>Comfort features</h1>
     <mat-selection-list role="list" style='display: flex;'><mat-list-option role="listitem" *ngFor="let item of comfortFeatureList$ | async"
-            [value]="item.id">{{item.name}}</mat-list-option></mat-selection-list>
+            [value]="item.id" (selectedChange)="onFeaturesChanged($event,item)"
+            [selected]="params.comfortFeatures.has(item.id)">{{item.name}}</mat-list-option></mat-selection-list>
     <mat-card-content>
         <ng-container *ngIf="carList$ | async as list">
             <table mat-table [dataSource]="list" class="mat-elevation-z8">

@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-title>Categories</mat-card-title>
     <mat-selection-list role="list" fxLayout="row" [multiple]="false">
-        <mat-list-option role="listoption" *ngFor="let item of categories$ | async" [value]="item" [routerLink]="'../'+item">
+        <mat-list-option role="listoption" *ngFor="let item of categories$ | async" [value]="item" [routerLink]="'/products/'+item">
             {{item}}
         </mat-list-option>
     </mat-selection-list>

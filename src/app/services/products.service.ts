@@ -18,4 +18,8 @@ export class ProductsService {
   getAllInCategory(category: string): Observable<ProductModel[]> {
     return this._httpClient.get<ProductModel[]>('https://fakestoreapi.com/products/category/' + category);
   }
+
+  getAllLimited(limit: number): Observable<ProductModel[]> {
+    return this._httpClient.get<ProductModel[]>('https://fakestoreapi.com/products?limit=' + limit);
+  }
 }

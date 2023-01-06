@@ -1,0 +1,22 @@
+<mat-card *ngIf="paginatorParams$|async as paginParams">
+    <mat-card-title>Paginated products</mat-card-title>
+    <mat-paginator
+        [length]="paginParams.length"
+        [pageSize]="paginParams.perPage"
+        [pageSizeOptions]="paginParams.pageOptions"
+        [pageIndex]="paginParams.pageIndex"
+        [showFirstLastButtons]="true"
+        (page)="onPageEvent($event)"
+        aria-label="Select page"
+    >
+    </mat-paginator>
+    <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item
+                role="listitem"
+                *ngFor="let item of beerList$ | async"
+            >{{item.name}}
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
