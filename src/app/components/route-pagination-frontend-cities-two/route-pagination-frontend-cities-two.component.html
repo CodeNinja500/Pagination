@@ -1,0 +1,21 @@
+<mat-card *ngIf="queryParams$|async as params">
+    <mat-card-title>Show cities</mat-card-title>
+    <label>Choose a page</label>
+    <mat-selection-list role="list" fxLayout="row" [multiple]="false">
+        <mat-list-option role="listoption" *ngFor="let page of pagesAvailable$ | async" [value]="page" [selected]="page==params.pageNumber"
+            [routerLink]="[]" [queryParams]="{pageNumber: page, pageSize: params.pageSize}">
+            {{page}}
+        </mat-list-option>
+    </mat-selection-list>
+    <label>Choose limit per page</label>
+    <mat-selection-list role="list" fxLayout="row" [multiple]="false">
+        <mat-list-option role="listoption" *ngFor="let item of limitOpts$ | async" [value]="item" [selected]="item==params.pageSize"
+            (selectedChange)="onPageSizeSelected($event,item)">
+            {{item}}
+        </mat-list-option>
+    </mat-selection-list>
+    <mat-card-content>
+        <mat-list role="list"><mat-list-item role="listitem"
+                *ngFor="let item of cityListPaginated$ | async">{{item.name}}</mat-list-item></mat-list>
+    </mat-card-content>
+</mat-card>

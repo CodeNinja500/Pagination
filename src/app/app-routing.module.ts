@@ -9,6 +9,7 @@ import { RoutePaginationBeersComponent } from './components/route-pagination-bee
 import { RoutePaginationSimpleBeersComponent } from './components/route-pagination-simple-beers/route-pagination-simple-beers.component';
 import { PaginationCustomBeersComponent } from './components/pagination-custom-beers/pagination-custom-beers.component';
 import { RoutePaginationFrontendCitiesComponent } from './components/route-pagination-frontend-cities/route-pagination-frontend-cities.component';
+import { RoutePaginationFrontendCitiesTwoComponent } from './components/route-pagination-frontend-cities-two/route-pagination-frontend-cities-two.component';
 import { RouteSortSingleProductsBeComponentModule } from './components/route-sort-single-products-be/route-sort-single-products-be.component-module';
 import { SearchMultiJobsComponentModule } from './components/search-multi-jobs/search-multi-jobs.component-module';
 import { FilterSingleProductsBeComponentModule } from './components/filter-single-products-be/filter-single-products-be.component-module';
@@ -18,6 +19,7 @@ import { RoutePaginationBeersComponentModule } from './components/route-paginati
 import { RoutePaginationSimpleBeersComponentModule } from './components/route-pagination-simple-beers/route-pagination-simple-beers.component-module';
 import { PaginationCustomBeersComponentModule } from './components/pagination-custom-beers/pagination-custom-beers.component-module';
 import { RoutePaginationFrontendCitiesComponentModule } from './components/route-pagination-frontend-cities/route-pagination-frontend-cities.component-module';
+import { RoutePaginationFrontendCitiesTwoComponentModule } from './components/route-pagination-frontend-cities-two/route-pagination-frontend-cities-two.component-module';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { RoutePaginationFrontendCitiesComponentModule } from './components/route
       { path: 'route-pagination-beers', component: RoutePaginationBeersComponent },
       { path: 'route-pagination-simple-beers', component: RoutePaginationSimpleBeersComponent },
       { path: 'pagination-custom-beers', component: PaginationCustomBeersComponent },
-      { path: 'route-pagination-frontend-cities', component: RoutePaginationFrontendCitiesComponent }
+      { path: 'route-pagination-frontend-cities', component: RoutePaginationFrontendCitiesComponent },
+      { path: 'route-pagination-frontend-cities-two', component: RoutePaginationFrontendCitiesTwoComponent }
     ]),
     RouteSortSingleProductsBeComponentModule,
     SearchMultiJobsComponentModule,
@@ -40,8 +43,9 @@ import { RoutePaginationFrontendCitiesComponentModule } from './components/route
     RoutePaginationBeersComponentModule,
     RoutePaginationSimpleBeersComponentModule,
     PaginationCustomBeersComponentModule,
-    RoutePaginationFrontendCitiesComponentModule
+    RoutePaginationFrontendCitiesComponentModule,
+    RoutePaginationFrontendCitiesTwoComponentModule
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

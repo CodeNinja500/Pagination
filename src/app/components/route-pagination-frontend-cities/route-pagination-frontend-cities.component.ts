@@ -63,7 +63,6 @@ export class RoutePaginationFrontendCitiesComponent {
     if (isSelected) {
       this.numberOfCities$
         .pipe(
-          take(1),
           tap((number) => {
             this._router.navigate([], {
               queryParams: {
