@@ -1,0 +1,10 @@
+<mat-card *ngIf="paginationState$|async as state">
+    <mat-card-title>Show 10 beers per page</mat-card-title>
+    <mat-card-content>
+        <mat-list role="list"><mat-list-item role="listitem"
+                *ngFor="let item of beerListPaginated$ | async">{{item.name}}</mat-list-item></mat-list>
+    </mat-card-content>
+    <button mat-mini-fab style='margin-right: 1rem;' (click)="onPrevClick()"
+        [disabled]="state.isFirst"><mat-icon>chevron_left</mat-icon></button>
+    <button mat-mini-fab (click)="onNextClick()" [disabled]="state.isLast"><mat-icon>chevron_right</mat-icon></button>
+</mat-card>
